@@ -2,9 +2,6 @@ package org.poalim.html;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-import com.fasterxml.jackson.databind.module.SimpleModule;
-import io.netty.handler.codec.http.HttpResponse;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
@@ -24,7 +21,6 @@ public class HtmlRoute extends AbstractVerticle {
             rc.response().headers().set("Content-Type", "application/json; charset=UTF-8");
             try {
                 ObjectMapper objectMapper = new ObjectMapper();
-//                objectMapper.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS);
                 rc.response().end(objectMapper.writeValueAsString(tag));
             } catch (JsonProcessingException e) {
                 e.printStackTrace();
